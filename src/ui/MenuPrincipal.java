@@ -29,16 +29,12 @@ public class MenuPrincipal {
                 case 1 -> new MenuLibros(bibliotecaService).mostrar();
                 case 2 -> new MenuUsuarios(bibliotecaService).mostrar();
                 case 3 -> new MenuOperaciones(bibliotecaService).mostrar();
-                case 4 ->     mostrarReportes();
+
                 case 0 -> System.out.println("Saliendo del sistema...");
                 default -> System.out.println("Opcion invalida");
             }
         } while (opcion != 0);
     }
 
-    
-    private void mostrarReportes() {
-        
-    }
 
 }
