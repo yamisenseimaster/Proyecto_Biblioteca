@@ -14,6 +14,48 @@ public class validaciones {
     private static final String PATRON_EMAIL = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
     private static final String PATRON_TELEFONO = "^\\+?[0-9]{10,15}$"; // Ejemplo para validar número de teléfono
 
+    private static final Scanner scanner = new Scanner(System.in);
+
+    // Limpiar la pantalla
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    // Pausa el programa
+    public static void pause() {
+        System.out.println("\nPresione Enter para continuar...");
+        scanner.nextLine();
+    }
+
+    // Leer un entero
+    public static int readInt(String message) {
+        while (true) {
+            System.out.print(message);
+            String input = scanner.nextLine();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingrese solo números enteros.");
+            }
+        }
+    }
+
+    
+
+    // Leer un double
+    public static double readDouble(String message) {
+        while (true) {
+            System.out.print(message);
+            String input = scanner.nextLine();
+            try {
+                return Double.parseDouble(input);
+            } catch (NumberFormatException e) {
+                System.out.println("Por favor, ingrese solo números decimales (double).");
+            }
+        }
+    }
+    
     public static int validarNumero(Scanner scanner, String mensaje) {
         while (true) {
             System.out.printf(mensaje);
