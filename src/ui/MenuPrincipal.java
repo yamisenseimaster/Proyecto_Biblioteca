@@ -20,7 +20,6 @@ public class MenuPrincipal {
             System.out.println("1. Gestion de Libros");
             System.out.println("2. Gestion de Usuarios");
             System.out.println("3. Operaciones de Prestamo/Devolucion");
-            System.out.println("4. Reportes y Consultas");
             System.out.println("0. Salir");
             opcion = validaciones.readInt("Seleccione una opcion: ");
 
@@ -29,7 +28,6 @@ public class MenuPrincipal {
                 case 1 -> new MenuLibros(bibliotecaService).mostrar();
                 case 2 -> new MenuUsuarios(bibliotecaService).mostrar();
                 case 3 -> new MenuOperaciones(bibliotecaService).mostrar();
-
                 case 0 -> System.out.println("Saliendo del sistema...");
                 default -> System.out.println("Opcion invalida");
             }
