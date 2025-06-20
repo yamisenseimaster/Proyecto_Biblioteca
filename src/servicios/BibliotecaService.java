@@ -18,6 +18,7 @@ public class BibliotecaService {
 
     //ejemplo de un metodo intermediario
     //  Métodos para Libros
+    //los metodos intermediarios son los que se encargan de llamar a los demas servicios
     public boolean registrarLibro(int codigo, String titulo, String autor, double precio) {
         return libroService.registrarLibro(codigo, titulo, autor, precio);
     }
