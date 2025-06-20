@@ -1,18 +1,22 @@
-## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# 📚 Sistema de Gestión de Biblioteca 
 
-## Folder Structure
+Este proyecto es un sistema integral para gestionar una biblioteca, desarrollado en Java, que aplica diversas estructuras de datos para optimizar operaciones como:
+📖 Gestión de libros: Registro, búsqueda rápida (por código o autor) y control de disponibilidad.
 
-The workspace contains two folders by default, where:
+-->  👥 Administración de usuarios: Registro, préstamos activos y seguimiento.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+-->  🔄 Operaciones: Préstamos, devoluciones y un sistema de "deshacer" usando pilas.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+-->  ⏳ Cola de espera: Para libros no disponibles, asegurando justicia en asignaciones.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+-->  🔍 Consultas avanzadas: Listado por autor, usuarios con más préstamos y valor total de libros prestados.
 
-## Dependency Management
+🔧 Tecnologías y Estructuras Clave
+Arreglos: Almacenamiento principal de libros/usuarios.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Árboles binarios: Búsquedas eficientes (O(log n)).
+
+Pilas y colas: Para historial de operaciones y lista de espera.
+
+Listas enlazadas: Resultados de consultas complejas.
