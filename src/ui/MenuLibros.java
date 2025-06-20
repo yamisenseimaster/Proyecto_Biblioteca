@@ -21,6 +21,7 @@ public class MenuLibros {
             System.out.println("3. Mostrar catalogo completo");
             System.out.println("4. Buscar libros por autor");
             System.out.println("5. Actualizar disponibilidad");
+            System.out.println("6. Calcular monto total de libros Prestados");
             System.out.println("0. Volver al menu principal");
             opcion = validaciones.readInt("Seleccione una opcion: ");
 
@@ -30,6 +31,7 @@ public class MenuLibros {
                 case 3 -> mostrarCatalogo();
                 case 4 -> buscarPorAutor();
                 case 5 -> actualizarDisponibilidad();
+                case 6 -> calcularMontoTotalPrestamos();
                 case 0 -> {}
                 default -> System.out.println("Opcion invalida");
             }
@@ -54,6 +56,10 @@ public class MenuLibros {
     }
 
     private void actualizarDisponibilidad() {
+        
+    }
+
+    public void calcularMontoTotalPrestamos(){
         
     }
 }
