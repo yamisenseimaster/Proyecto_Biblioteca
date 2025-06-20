@@ -18,7 +18,7 @@ public class MenuUsuarios {
             System.out.println("=== GESTION DE USUARIOS ===");
             System.out.println("1. Registrar nuevo usuario");
             System.out.println("2. Buscar usuario");
-            System.out.println("3. Listar usuarios con X libros");
+            System.out.println("3. Listar usuarios con mas X libros");
             System.out.println("4. Usuarios en espera");
             System.out.println("5. Usuarios registrados");
             System.out.println("0. Volver");

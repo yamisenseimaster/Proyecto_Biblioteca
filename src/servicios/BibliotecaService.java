@@ -2,6 +2,7 @@ package servicios;
 
 
 // Clase principal que coordina todos los servicios
+// esta clase vamos para centralizar todos los servicios como un puente con los demas servicios
 public class BibliotecaService {
     private LibroService libroService;
     private UsuarioService usuarioService;
