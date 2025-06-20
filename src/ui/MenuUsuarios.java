@@ -20,8 +20,7 @@ public class MenuUsuarios {
             System.out.println("2. Buscar usuario");
             System.out.println("3. Listar usuarios con X libros");
             System.out.println("4. Usuarios en espera");
-            System.out.println("5. Deshacer ultima operacion");
-            System.out.println("6. Usuarios registrados");
+            System.out.println("5. Usuarios registrados");
             System.out.println("0. Volver");
             opcion = validaciones.readInt("Seleccione una opcion: ");
 
@@ -30,8 +29,7 @@ public class MenuUsuarios {
                 case 2 -> buscarUsuario();
                 case 3 -> listarUsuariosConMasLibros();
                 case 4 -> mostrarUsuariosEnEspera();
-                case 5 -> deshacerOperacion();
-                case 6 -> mostrarUsuariosRegistrados();
+                case 5 -> mostrarUsuariosRegistrados();
                 case 0 -> {}
                 default -> System.out.println("Opcion invalida");
             }
@@ -55,10 +53,6 @@ public class MenuUsuarios {
         
     }
 
-
-    private void deshacerOperacion() {
-        
-    }
 
     public void mostrarUsuariosRegistrados() {
         
