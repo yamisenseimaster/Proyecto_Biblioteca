@@ -40,6 +40,17 @@ public class MenuLibros {
     }
 
     private void registrarLibro() {
+        System.out.println("\n=== REGISTRAR NUEVO LIBRO ===");
+        int codigo = validaciones.readInt("Ingrese código del libro: ");
+        String titulo = validaciones.readString("Ingrese título: ");
+        String autor = validaciones.readString("Ingrese autor: ");
+        double precio = validaciones.readDouble("Ingrese precio: ");
+
+        if (bibliotecaService.registrarLibro(codigo, titulo, autor, precio)) {
+            System.out.println("Libro registrado exitosamente!");
+        } else {
+            System.out.println("Error: El código ya existe o se alcanzó la capacidad máxima");
+        }
         
     }
 
@@ -60,6 +71,6 @@ public class MenuLibros {
     }
 
     public void calcularMontoTotalPrestamos(){
-        
+
     }
 }

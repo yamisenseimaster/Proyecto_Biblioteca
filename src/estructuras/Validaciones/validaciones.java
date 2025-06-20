@@ -55,6 +55,30 @@ public class validaciones {
             }
         }
     }
+
+    /// Leer un string
+    public static String readString(String message) {
+    while (true) {
+        System.out.print(message);
+        String input = scanner.nextLine();
+        if (!input.trim().isEmpty()) {
+            return input;
+        } else {
+            System.out.println("Por favor, ingrese un texto válido (no vacío).");
+        }
+    }
+}
+
+    public static boolean readBoolean(String message) {
+        while (true) {
+            System.out.print(message);
+            String input = scanner.nextLine().toLowerCase();
+            if (input.equals("true")) return true;
+            if (input.equals("false")) return false;
+            System.out.println("Entrada inválida. Ingrese 'true' o 'false'");
+        }
+    }
+    
     
     public static int validarNumero(Scanner scanner, String mensaje) {
         while (true) {
