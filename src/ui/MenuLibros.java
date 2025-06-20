@@ -41,7 +41,7 @@ public class MenuLibros {
 
     private void registrarLibro() {
         System.out.println("\n=== REGISTRAR NUEVO LIBRO ===");
-        int codigo = validaciones.readInt("Ingrese código del libro: ");
+        int codigo = (int) (Math.random() * 1000); // Generar un codigo aleatorio
         String titulo = validaciones.readString("Ingrese título: ");
         String autor = validaciones.readString("Ingrese autor: ");
         double precio = validaciones.readDouble("Ingrese precio: ");
@@ -53,6 +53,7 @@ public class MenuLibros {
         }
         
     }
+
 
     private void buscarPorCodigo() {
        
