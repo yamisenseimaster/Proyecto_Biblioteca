@@ -1,13 +1,13 @@
 package modelos;
 
 public class Libro implements Comparable<Libro> {
-    private String codigo;      // Único
+    private int codigo;      // Único
     private String titulo;
     private String autor;
     private double precio;
     private boolean disponible; // true/false
 
-    public Libro(String codigo, String titulo, String autor, double precio, boolean disponible) {
+    public Libro(int codigo, String titulo, String autor, double precio, boolean disponible) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.autor = autor;
@@ -15,11 +15,11 @@ public class Libro implements Comparable<Libro> {
         this.disponible = disponible;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
 
@@ -59,7 +59,7 @@ public class Libro implements Comparable<Libro> {
     
     @Override
     public int compareTo(Libro otro) {
-        return this.codigo.compareTo(otro.codigo);
+        return Integer.compare(this.codigo, otro.codigo);
     }
     @Override
     public String toString() {

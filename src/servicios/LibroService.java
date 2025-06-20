@@ -1,7 +1,7 @@
 package servicios;
 import modelos.Libro;
 import estructuras.arboles.*;
-import estructuras.listaEnlazadas.*;;
+import estructuras.listaEnlazadas.*;
 public class LibroService {
     private Libro[] arregloLibros;
     private BinarySearchTree<Libro> arbolLibros;
@@ -13,4 +13,28 @@ public class LibroService {
         cantidadLibros = 0;
     }
     
+    //Aqui implementamos lo que dijo el profe  registrar en ambas estructura
+    public boolean registrarLibro(int codigo, String titulo, String autor, double precio) {
+        if (cantidadLibros >= arregloLibros.length) {
+            return false; // Arreglo lleno
+        }
+        
+        // creamos un metodo para ver si ya existe el codigo
+        if (buscarPorCodigo(codigo) != null) {
+            return false;
+        }
+
+        
+        Libro nuevoLibro = new Libro(codigo, titulo, autor, precio, true);
+        arregloLibros[cantidadLibros++] = nuevoLibro;
+        arbolLibros.add(nuevoLibro);
+        return true;
+    }
+
+    // Busca un libro por código (usando el árbol binario)
+    public Libro buscarPorCodigo(int codigo) {
+        Libro libroTemp = new Libro(codigo, "", "", 0.0, true);
+        return arbolLibros.get(libroTemp);
+    }
+
 }

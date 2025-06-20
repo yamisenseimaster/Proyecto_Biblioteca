@@ -15,4 +15,10 @@ public class BibliotecaService {
     }
 
     //  metodos Intermediarios abajos 
+
+    //ejemplo de un metodo intermediario
+    //  Métodos para Libros
+    public boolean registrarLibro(int codigo, String titulo, String autor, double precio) {
+        return libroService.registrarLibro(codigo, titulo, autor, precio);
+    }
 }
