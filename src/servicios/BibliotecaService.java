@@ -22,4 +22,7 @@ public class BibliotecaService {
     public boolean registrarLibro(int codigo, String titulo, String autor, double precio) {
         return libroService.registrarLibro(codigo, titulo, autor, precio);
     }
+    public int generarCodigoLibroUnico() {
+    return libroService.generarCodigoUnico();
+}
 }

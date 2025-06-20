@@ -41,15 +41,16 @@ public class MenuLibros {
 
     private void registrarLibro() {
         System.out.println("\n=== REGISTRAR NUEVO LIBRO ===");
-        int codigo = (int) (Math.random() * 1000); // Generar un codigo aleatorio
-        String titulo = validaciones.readString("Ingrese título: ");
+        int codigo = bibliotecaService.generarCodigoLibroUnico();// Generar un codigo aleatorio
+        String titulo = validaciones.readString("Ingrese titulo: ");
         String autor = validaciones.readString("Ingrese autor: ");
         double precio = validaciones.readDouble("Ingrese precio: ");
 
         if (bibliotecaService.registrarLibro(codigo, titulo, autor, precio)) {
             System.out.println("Libro registrado exitosamente!");
+            System.out.println("Codigo generado: " + codigo);
         } else {
-            System.out.println("Error: El código ya existe o se alcanzó la capacidad máxima");
+            System.out.println("Error El codigo ya existe o se alcanzo la capacidad maxima!!");
         }
         
     }

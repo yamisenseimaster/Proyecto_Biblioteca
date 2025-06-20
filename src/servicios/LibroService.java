@@ -37,4 +37,12 @@ public class LibroService {
         return arbolLibros.get(libroTemp);
     }
 
+    public int generarCodigoUnico(){
+        int  codigo;
+        do {
+            codigo = (int) (Math.random() *1000);
+        } while (buscarPorCodigo(codigo) != null);
+        return codigo;
+    }
+
 }
