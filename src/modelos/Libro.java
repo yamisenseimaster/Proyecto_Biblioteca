@@ -15,6 +15,13 @@ public class Libro implements Comparable<Libro> {
         this.disponible = disponible;
     }
 
+    public Libro() {
+	}
+    
+	public Libro(int codigo) {
+		this.codigo = codigo;
+	}
+
     public int getCodigo() {
         return codigo;
     }
