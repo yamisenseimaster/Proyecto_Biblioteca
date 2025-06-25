@@ -35,14 +35,14 @@ public class UsuarioService {
 
     public Usuario buscarPorUsuario(int numeroUsuario){
         Usuario usuarioTemp = new Usuario(numeroUsuario, "", "", "", "", 0);
-        return arbolLibros.get(libroTemp);
+        return arbolUsuarios.get(libroTemp);
     }
     
     public int generarNumeroUsuarioUnico(){
         int  numeroUsuario;
         do {
             numeroUsuario = (int) (Math.random() *1000);
-        } while (buscarPorCodigo(numeroUsuario) != null);
+        } while (buscarPorUsuario(numeroUsuario) != null);
         return numeroUsuario;
     }
 
