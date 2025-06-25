@@ -27,15 +27,15 @@ public class UsuarioService {
     if(buscarPorNumeroUsuario(numeroUsuario) != null){
         return false;
     }
-    Usuario nuevoUsuario = new Usuario(numeroUsuario, dni, nombre, direccion, telefono, 0); 
+    Usuario nuevoUsuario = new Usuario(numeroUsuario, dni, nombre, direccion, telefono); 
     arregloUsuarios[cantidadUsuarios++] = nuevoUsuario;
     arbolUsuarios.add(nuevoUsuario);
     return true;
     }
 
     public Usuario buscarPorNumeroUsuario(int numeroUsuario){
-        Usuario usuarioTemp = new Usuario(numeroUsuario, "", "", "", "", 0);
-        return arbolUsuarios.get(libroTemp);
+        Usuario usuarioTemp = new Usuario(numeroUsuario, "", "", "", "");
+        return arbolUsuarios.get(usuarioTemp);
     }
     
     public int generarNumeroUsuarioUnico(){
