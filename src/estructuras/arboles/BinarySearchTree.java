@@ -142,5 +142,20 @@ public class BinarySearchTree<ELEMENT extends Comparable<ELEMENT>> extends Binar
         }
         return null;
     }
+    public ELEMENT buscar1(ELEMENT item) {
+        BTNode<ELEMENT> find = this.root;
+        while ((find != null) && (find.item.compareTo(item) !=0)) {
+            if(item.compareTo(find.item)<0){
+                find = find.left;
+            } else {
+                find = find.right;
+            }
+        }
+        if(find==null){
+            return null;
+        }
+        ELEMENT save = find.item;
+        return save;
+    }
 
 }
