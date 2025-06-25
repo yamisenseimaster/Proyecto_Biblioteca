@@ -28,12 +28,12 @@ public class UsuarioService {
         return false;
     }
     Usuario nuevoUsuario = new Usuario(numeroUsuario, dni, nombre, direccion, telefono, 0); 
-    arregloUsuario[cantidadUsuarios++] = nuevoLibro;
-    arbolUsuarios.add(nuevoLibro);
+    arregloUsuarios[cantidadUsuarios++] = nuevoUsuario;
+    arbolUsuarios.add(nuevoUsuario);
     return true;
     }
 
-    public Usuario buscarPorUsuario(int numeroUsuario){
+    public Usuario buscarPorNumeroUsuario(int numeroUsuario){
         Usuario usuarioTemp = new Usuario(numeroUsuario, "", "", "", "", 0);
         return arbolUsuarios.get(libroTemp);
     }
@@ -42,7 +42,7 @@ public class UsuarioService {
         int  numeroUsuario;
         do {
             numeroUsuario = (int) (Math.random() *1000);
-        } while (buscarPorUsuario(numeroUsuario) != null);
+        } while (buscarPorNumeroUsuario(numeroUsuario) != null);
         return numeroUsuario;
     }
 
