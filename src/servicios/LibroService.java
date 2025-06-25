@@ -1,7 +1,9 @@
 package servicios;
+
 import modelos.Libro;
 import estructuras.arboles.*;
 import estructuras.listaEnlazadas.*;
+
 public class LibroService {
     private Libro[] arregloLibros;
     private BinarySearchTree<Libro> arbolLibros;
@@ -12,19 +14,18 @@ public class LibroService {
         arbolLibros = new BinarySearchTree<>();
         cantidadLibros = 0;
     }
-    
-    //Aqui implementamos lo que dijo el profe  registrar en ambas estructura
+
+    // Aqui implementamos lo que dijo el profe registrar en ambas estructura
     public boolean registrarLibro(int codigo, String titulo, String autor, double precio) {
         if (cantidadLibros >= arregloLibros.length) {
             return false; // Arreglo lleno
         }
-        
+
         // creamos un metodo para ver si ya existe el codigo
         if (buscarPorCodigo(codigo) != null) {
             return false;
         }
 
-        
         Libro nuevoLibro = new Libro(codigo, titulo, autor, precio, true);
         arregloLibros[cantidadLibros++] = nuevoLibro;
         arbolLibros.add(nuevoLibro);
@@ -37,12 +38,41 @@ public class LibroService {
         return arbolLibros.get(libroTemp);
     }
 
-    public int generarCodigoUnico(){
-        int  codigo;
+    public int generarCodigoUnico() {
+        int codigo;
         do {
-            codigo = (int) (Math.random() *1000);
+            codigo = (int) (Math.random() * 1000);
         } while (buscarPorCodigo(codigo) != null);
         return codigo;
     }
 
+    public void mostrarCatalogo() {
+        for (Libro libro : this.arregloLibros) {
+            if (libro != null) {
+                System.out.println(libro);
+            }
+        }
+    }
+
+    public SimpleLinkedList<Libro> buscarLibrosPorAutor(String autorBuscado) {
+        SimpleLinkedList<Libro> listaLibrosPorAutor = new SimpleLinkedList<>();
+
+        for (Libro libro : arregloLibros) {
+            if (libro != null && autorBuscado.equalsIgnoreCase(libro.getAutor())) {
+                listaLibrosPorAutor.addFirst(libro);
+            }
+        }
+        return listaLibrosPorAutor;
+
+    }
+
+    public double montoLibrosPrestados() {
+        double montoTotal = 0;
+        for (Libro libro : arregloLibros) {
+            if (libro != null && libro.isDisponible() == false) {
+                montoTotal += libro.getPrecio();
+            }
+        }
+        return montoTotal;
+    }
 }

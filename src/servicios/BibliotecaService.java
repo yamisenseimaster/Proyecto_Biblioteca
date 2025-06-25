@@ -1,5 +1,7 @@
 package servicios;
 
+import estructuras.listaEnlazadas.SimpleLinkedList;
+import modelos.Libro;
 
 // Clase principal que coordina todos los servicios
 // esta clase vamos para centralizar todos los servicios como un puente con los demas servicios
@@ -24,5 +26,19 @@ public class BibliotecaService {
     }
     public int generarCodigoLibroUnico() {
     return libroService.generarCodigoUnico();
+        
     }   
+
+     public void mostrarCatalogo() {
+        libroService.mostrarCatalogo();
+    }
+
+    public SimpleLinkedList<Libro> buscarLibrosPorAutor(String autorBuscado){
+        return libroService.buscarLibrosPorAutor(autorBuscado);
+    } 
+
+    public double montoLibrosPrestados(){
+        return libroService.montoLibrosPrestados();
+    }
+
 }

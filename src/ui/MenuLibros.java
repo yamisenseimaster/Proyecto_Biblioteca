@@ -2,7 +2,8 @@ package ui;
 
 import servicios.BibliotecaService;
 import estructuras.Validaciones.validaciones;
-
+import estructuras.listaEnlazadas.SimpleLinkedList;
+import modelos.Libro;
 
 public class MenuLibros {
     private final BibliotecaService bibliotecaService;
@@ -20,8 +21,7 @@ public class MenuLibros {
             System.out.println("2. Buscar libro por codigo");
             System.out.println("3. Mostrar catalogo completo");
             System.out.println("4. Buscar libros por autor");
-            System.out.println("5. Actualizar disponibilidad");
-            System.out.println("6. Calcular monto total de libros Prestados");
+            System.out.println("5. Calcular monto total de libros Prestados");
             System.out.println("0. Volver al menu principal");
             opcion = validaciones.readInt("Seleccione una opcion: ");
 
@@ -30,9 +30,9 @@ public class MenuLibros {
                 case 2 -> buscarPorCodigo();
                 case 3 -> mostrarCatalogo();
                 case 4 -> buscarPorAutor();
-                case 5 -> actualizarDisponibilidad();
-                case 6 -> calcularMontoTotalPrestamos();
-                case 0 -> {}
+                case 5 -> calcularMontoTotalPrestamos();
+                case 0 -> {
+                }
                 default -> System.out.println("Opcion invalida");
             }
             validaciones.pause();
@@ -52,27 +52,29 @@ public class MenuLibros {
         } else {
             System.out.println("Error El codigo ya existe o se alcanzo la capacidad maxima!!");
         }
-        
+
     }
 
-
     private void buscarPorCodigo() {
-       
+
     }
 
     private void mostrarCatalogo() {
-        
+        System.out.println("\n<<< CATÁLOGO ACTUALIZADO A LA FECHA >>>.");
+        bibliotecaService.mostrarCatalogo();
     }
 
     private void buscarPorAutor() {
-        
+        System.out.println("\n<<< BÚSQUEDA DE LIBRO POR AUTOR >>>:");
+        String autorBuscado = validaciones.readString("Nombre: ");
+        SimpleLinkedList<Libro> lista = bibliotecaService.buscarLibrosPorAutor(autorBuscado);
+        for (Libro libro : lista) {
+            System.out.println(libro);
+        }
     }
 
-    private void actualizarDisponibilidad() {
-        
-    }
-
-    public void calcularMontoTotalPrestamos(){
-
+    public void calcularMontoTotalPrestamos() {
+        System.out.println("\n<<< MONTO TOTAL DE LOS LIBROS QUE SE ENCUENTRAN EN PRÉSTAMO >>>");
+        System.out.println("Total: " + bibliotecaService.montoLibrosPrestados());
     }
 }
