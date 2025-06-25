@@ -1,10 +1,9 @@
 package servicios;
 
-import modelos.Operacion;
-import modelos.Usuario;
-
 import estructuras.colas.*;
-import estructuras.pilas.*;;
+import estructuras.pilas.*;
+import modelos.Operacion;
+import modelos.Usuario;;
 
 public class UsuarioService {
     private int cantidadUsuarios;

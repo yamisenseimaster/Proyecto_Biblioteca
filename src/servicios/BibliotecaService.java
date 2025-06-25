@@ -24,5 +24,5 @@ public class BibliotecaService {
     }
     public int generarCodigoLibroUnico() {
     return libroService.generarCodigoUnico();
-}
+    }   
 }

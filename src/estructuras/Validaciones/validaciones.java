@@ -1,13 +1,14 @@
 package estructuras.Validaciones;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
-import javax.swing.JOptionPane; // Importa la clase JOptionPane
-import java.time.DateTimeException; // Importa la clase DateTimeException
+import java.util.regex.Pattern; // Importa la clase JOptionPane
+import javax.swing.JOptionPane; // Importa la clase DateTimeException
+import modelos.Usuario;
 
 public class validaciones {
     private static final String FORMATO_FECHA = "yyyy-MM-dd";
@@ -286,4 +287,24 @@ public class validaciones {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validarTextoVacio'");
     }
+
+    //validar código de usuario
+
+    public static boolean codigoExiste(int codigo, Usuario[] arregloUsuarios) {
+        for (Usuario usuario : arregloUsuarios) {
+            if (usuario.getNumeroUsuario() == codigo) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int generarCodigoUnico(Usuario[] arregloUsuarios) {
+        int codigo;
+        do {
+            codigo = (int) (Math.random() * 90000) + 10000; // 5 dígitos
+        } while (codigoExiste(codigo, arregloUsuarios));
+        return codigo;
+    }
 }
+
