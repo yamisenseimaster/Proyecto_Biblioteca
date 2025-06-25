@@ -21,7 +21,7 @@ public class UsuarioService {
     }
 
     public boolean registrarUsuario(int numeroUsuario, String dni, String nombre, String direccion, String telefono) {
-        if(cantidadUsuarios >= arregloUsuarios.length(){
+        if(cantidadUsuarios >= arregloUsuarios.length){
             return false;
         }
     if(buscarPorNumeroUsuario(numeroUsuario) != null){
