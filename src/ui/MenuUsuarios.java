@@ -95,7 +95,7 @@ public class MenuUsuarios {
         boolean hayCoincidencias = false;
 
         for (int i = 0; i < totalUsuarios; i++) {
-            if (arregloUsuarios[i].getLibrosPrestados() > x) {
+            if (arregloUsuarios[i].getCantidadLibrosPrestados() > x) {
                 System.out.println(arregloUsuarios[i]);
                 hayCoincidencias = true;
             }
