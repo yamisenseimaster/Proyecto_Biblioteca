@@ -56,7 +56,8 @@ public class MenuUsuarios {
         scanner.nextLine();
             
         // Creamos el objeto Usuario
-        Usuario nuevoUsuario = new Usuario(nroDeUsuario, dni, nombre, direccion, telefono, cantidadLibro);
+        Usuario nuevoUsuario = new Usuario(nroDeUsuario, dni, nombre, direccion, telefono);
+        nuevoUsuario.setCantidadLibrosPrestados(0);
 
         // Guardamos en el arreglo si hay espacio
         if (totalUsuarios < arregloUsuarios.length) {
