@@ -49,9 +49,9 @@ public class MenuUsuarios {
         String nombre = validaciones.readString("Nombre completo: ");
         String direccion = validaciones.readString("Dirección: ");
         String telefono = validaciones.readString("Teléfono: ");
-        int librosPrestados = validaciones.readInt("Libros prestados: ");
 
-        if (bibliotecaService.registrarUsuario(numeroUsuario, dni, nombre, direccion, telefono, librosPrestados)) {
+
+        if (bibliotecaService.registrarUsuario(numeroUsuario, dni, nombre, direccion, telefono)) {
             System.out.println("Usuario registrado exitosamente!");
             System.out.println("Codigo generado: " + numeroUsuario);
         } else {
@@ -71,7 +71,6 @@ public class MenuUsuarios {
             System.out.println("DNI: " + usuario.getDni());
             System.out.println("Dirección: " + usuario.getDireccion());
             System.out.println("Teléfono: " + usuario.getTelefono());
-            System.out.println("Libros prestados: " + usuario.getLibrosPrestados());
         } else {
             System.out.println("Usuario no encontrado");
         }
@@ -87,8 +86,7 @@ public class MenuUsuarios {
             System.out.println("\nUSUARIOS ENCONTRADOS:");
             for (Usuario usuario : usuarios) {
                 System.out.println(usuario.getNumeroUsuario() + " - " + 
-                                 usuario.getNombre() + " (" + 
-                                 usuario.getLibrosPrestados() + " libros)");
+                                 usuario.getNombre() + " - " );
             }
             System.out.println("Total: " + usuarios.length + " usuarios");
         } else {

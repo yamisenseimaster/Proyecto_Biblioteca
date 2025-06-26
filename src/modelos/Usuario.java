@@ -8,14 +8,14 @@ public class Usuario implements Comparable<Usuario> {
     private String telefono;
     private int librosPrestados; // Inicia en 0
 
-    public Usuario(int numeroUsuario, String dni, String nombre, String direccion, String telefono,
-            int librosPrestados) {
+    public Usuario(int numeroUsuario, String dni, String nombre, String direccion, String telefono
+            ) {
         this.numeroUsuario = numeroUsuario;
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.librosPrestados = librosPrestados;
+        this.librosPrestados = 0;
     }
 
     public int getNumeroUsuario() {

@@ -49,11 +49,11 @@ public class BibliotecaService {
     }
 
     public boolean deshacerUltimaOperacion() {
-        return usuarioService.deshacerUltimaOperacion();
+        return operacionService.deshacerUltimaOperacion();
     }
 
-    public boolean registrarUsuario(int numeroUsuario, String dni, String nombre, String direccion, String telefono, int librosPrestados) {
-        return usuarioService.registrarUsuario(numeroUsuario, dni, nombre, direccion, telefono, librosPrestados);
+    public boolean registrarUsuario(int numeroUsuario, String dni, String nombre, String direccion, String telefono) {
+        return usuarioService.registrarUsuario(numeroUsuario, dni, nombre, direccion, telefono);
     }
 
     public Usuario buscarUsuarioPorNumero(int numeroUsuario) {
