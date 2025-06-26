@@ -56,25 +56,41 @@ public class MenuLibros {
     }
 
     private void buscarPorCodigo() {
+        System.out.println("\n=== BUSCAR LIBRO POR CÓDIGO ===");
+        int codigo = validaciones.readInt("Ingrese código del libro: ");
+        Libro libro = bibliotecaService.buscarLibroPorCodigo(codigo);
 
-    }
-
-    private void mostrarCatalogo() {
-        System.out.println("\n<<< CATÁLOGO ACTUALIZADO A LA FECHA >>>.");
-        bibliotecaService.mostrarCatalogo();
-    }
-
-    private void buscarPorAutor() {
-        System.out.println("\n<<< BÚSQUEDA DE LIBRO POR AUTOR >>>:");
-        String autorBuscado = validaciones.readString("Nombre: ");
-        SimpleLinkedList<Libro> lista = bibliotecaService.buscarLibrosPorAutor(autorBuscado);
-        for (Libro libro : lista) {
+        if (libro != null) {
+            System.out.println("\nLIBRO ENCONTRADO:");
             System.out.println(libro);
+        } else {
+            System.out.println("Libro no encontrado");
         }
     }
 
-    public void calcularMontoTotalPrestamos() {
-        System.out.println("\n<<< MONTO TOTAL DE LOS LIBROS QUE SE ENCUENTRAN EN PRÉSTAMO >>>");
-        System.out.println("Total: " + bibliotecaService.montoLibrosPrestados());
+    private void mostrarCatalogo() {
+        System.out.println("\n=== CATÁLOGO COMPLETO ===");
+        System.out.println(bibliotecaService.mostrarCatalogoCompleto());
+    }
+
+    private void buscarPorAutor() {
+        System.out.println("\n=== BUSCAR LIBROS POR AUTOR ===");
+        String autor = validaciones.readString("Ingrese nombre del autor: ");
+        SimpleLinkedList<Libro> resultados = bibliotecaService.buscarLibrosPorAutor(autor);
+
+        if (resultados.size() > 0) {
+            System.out.println("\nLIBROS ENCONTRADOS:");
+            for (Libro libro : resultados) {
+                System.out.println(libro);
+            }
+            System.out.println("Total: " + resultados.size() + " libros");
+        } else {
+            System.out.println("No se encontraron libros de este autor");
+        }
+    }
+
+    public void calcularMontoTotalPrestamos(){
+        System.out.println("\n=== CALCULAR MONTOS DE PRESTAMOS ===");
+        System.out.println("Monto total de prestamos: $ "+bibliotecaService.calcularMontoTotalPrestamos());
     }
 }

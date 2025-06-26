@@ -46,12 +46,14 @@ public class LibroService {
         return codigo;
     }
 
-    public void mostrarCatalogo() {
-        for (Libro libro : this.arregloLibros) {
-            if (libro != null) {
-                System.out.println(libro);
-            }
+    // Muestra todos los libros (usando el arreglo)
+    public String mostrarCatalogoCompleto() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n=== CATÁLOGO COMPLETO (").append(cantidadLibros).append(" libros) ===\n");
+        for (int i = 0; i < cantidadLibros; i++) {
+            sb.append(arregloLibros[i].toString()).append("\n");
         }
+        return sb.toString();
     }
 
     public SimpleLinkedList<Libro> buscarLibrosPorAutor(String autorBuscado) {
@@ -67,7 +69,7 @@ public class LibroService {
     }
 
     public double montoLibrosPrestados() {
-        double montoTotal = 0;
+        double montoTotal = 0.0;
         for (Libro libro : arregloLibros) {
             if (libro != null && libro.isDisponible() == false) {
                 montoTotal += libro.getPrecio();

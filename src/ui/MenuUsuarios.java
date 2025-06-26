@@ -8,8 +8,7 @@ import servicios.BibliotecaService;
 public class MenuUsuarios {
 
     private final BibliotecaService bibliotecaService;
-    private Usuario[] arregloUsuarios = new Usuario[50];
-    private int totalUsuarios = 0;
+
     
     Scanner scanner= new Scanner(System.in);
 
@@ -44,92 +43,93 @@ public class MenuUsuarios {
     }
 
     private void registrarUsuario() {
-        System.out.println("====== Registrar Usuario ======");
-        System.out.println("1) Ingrese el numero de usuario: ");
-        int nroDeUsuario = validaciones.generarCodigoUnico(arregloUsuarios);
-        scanner.nextLine();//buffer
-        String dni = validaciones.validarDni(scanner, "2) Ingrese el DNI: "); //en el método validar dni este aparece cómo integer pero en la clase Usuario aparece cómo String. 
-        String nombre = validaciones.readString(" 3) Ingrese nombre: ");
-        String direccion = validaciones.readString("4) Ingrese la dirección:");
-        String telefono = validaciones.readString(" 5) Ingresar teléfono: ");
-        int cantidadLibro = validaciones.readInt(" 6) Ingrese la cantidad de libros prestados: ");
-        scanner.nextLine();
-            
-        // Creamos el objeto Usuario
-        Usuario nuevoUsuario = new Usuario(nroDeUsuario, dni, nombre, direccion, telefono, cantidadLibro);
+        System.out.println("\n=== REGISTRAR NUEVO USUARIO ===");
+        int numeroUsuario = bibliotecaService.generarCodigoLibroUnico();// Generar un codigo aleatorio
+        String dni = validaciones.readString("DNI: ");
+        String nombre = validaciones.readString("Nombre completo: ");
+        String direccion = validaciones.readString("Dirección: ");
+        String telefono = validaciones.readString("Teléfono: ");
+        int librosPrestados = validaciones.readInt("Libros prestados: ");
 
-        // Guardamos en el arreglo si hay espacio
-        if (totalUsuarios < arregloUsuarios.length) {
-            arregloUsuarios[totalUsuarios] = nuevoUsuario;
-            totalUsuarios++;
-            System.out.println("Usuario registrado con éxito. Código asignado: " + nroDeUsuario);
+        if (bibliotecaService.registrarUsuario(numeroUsuario, dni, nombre, direccion, telefono, librosPrestados)) {
+            System.out.println("Usuario registrado exitosamente!");
+            System.out.println("Codigo generado: " + numeroUsuario);
         } else {
-            System.out.println("No se pueden registrar más usuarios. Límite alcanzado.");
+            System.out.println("Error: El número de usuario ya existe o capacidad máxima alcanzada");
         }
     }
     
     private void buscarUsuario() {
-        System.out.println("====== Buscar Usuario ======");
-        int codigo = validaciones.readInt("Ingrese el número de usuario a buscar: ");
-        boolean encontrado = false;
+        System.out.println("\n=== BUSCAR USUARIO ===");
+        int numeroUsuario = validaciones.readInt("Ingrese número de usuario: ");
+        Usuario usuario = bibliotecaService.buscarUsuarioPorNumero(numeroUsuario);
 
-        for (int i = 0; i < totalUsuarios; i++) {
-            if (arregloUsuarios[i].getNumeroUsuario() == codigo) {
-                System.out.println("Usuario encontrado:");
-                System.out.println(arregloUsuarios[i]);
-                encontrado = true;
-                break;
-            }
-        }
-
-        if (!encontrado) {
-            System.out.println("No se encontró un usuario con ese código.");
+        if (usuario != null) {
+            System.out.println("\nUSUARIO ENCONTRADO:");
+            System.out.println("Número: " + usuario.getNumeroUsuario());
+            System.out.println("Nombre: " + usuario.getNombre());
+            System.out.println("DNI: " + usuario.getDni());
+            System.out.println("Dirección: " + usuario.getDireccion());
+            System.out.println("Teléfono: " + usuario.getTelefono());
+            System.out.println("Libros prestados: " + usuario.getLibrosPrestados());
+        } else {
+            System.out.println("Usuario no encontrado");
         }
     }
     
 
     private void listarUsuariosConMasLibros() {
-        System.out.println("====== Listar usuarios con más de X libros ======");
-        int x = validaciones.readInt("Ingrese el número mínimo de libros: ");
-        boolean hayCoincidencias = false;
+        System.out.println("\n=== USUARIOS CON MÁS DE X LIBROS ===");
+        int cantidadMinima = validaciones.readInt("Ingrese cantidad mínima de libros: ");
+        Usuario[] usuarios = bibliotecaService.listarUsuariosConMasDeXLibros(cantidadMinima);
 
-        for (int i = 0; i < totalUsuarios; i++) {
-            if (arregloUsuarios[i].getLibrosPrestados() > x) {
-                System.out.println(arregloUsuarios[i]);
-                hayCoincidencias = true;
+        if (usuarios.length > 0) {
+            System.out.println("\nUSUARIOS ENCONTRADOS:");
+            for (Usuario usuario : usuarios) {
+                System.out.println(usuario.getNumeroUsuario() + " - " + 
+                                 usuario.getNombre() + " (" + 
+                                 usuario.getLibrosPrestados() + " libros)");
             }
-        }
-
-        if (!hayCoincidencias) {
-            System.out.println("No hay usuarios con más de " + x + " libros.");
+            System.out.println("Total: " + usuarios.length + " usuarios");
+        } else {
+            System.out.println("No se encontraron usuarios con " + cantidadMinima + " o más libros prestados");
         }
     }
     
-    private void mostrarUsuariosEnEspera() { //lo interprete que solo debe mostrar
-        System.out.println("====== Usuarios en Espera ======");
-        //implementar colas
-        if (colaDeEspera.isEmpty()) {
-        System.out.println("No hay usuarios en espera.");
-        } else {
-        System.out.println("=== Usuarios en espera ===");
-        for (Usuario usuario : colaDeEspera) {
-            System.out.println(usuario);
-        }
-    }
+    private void mostrarUsuariosEnEspera() {
+        System.out.println("\n=== USUARIOS EN ESPERA ===");
+        int cantidad = bibliotecaService.getUsuariosEnEspera();
+        System.out.println("Usuarios en cola de espera: " + cantidad);
         
-    }
-
-
-    public void mostrarUsuariosRegistrados() {
-        System.out.println("====== Usuarios Registrados ======");
-
-        if (totalUsuarios == 0) {
-            System.out.println("No hay usuarios registrados.");
-        } else {
-            for (int i = 0; i < totalUsuarios; i++) {
-                System.out.println(arregloUsuarios[i]);
+        // Opcional: Mostrar detalles de usuarios en espera
+        if (cantidad > 0) {
+            System.out.println("\n¿Desea atender al siguiente usuario? (s/n)");
+            String opcion = validaciones.readString("");
+            if (opcion.equalsIgnoreCase("s")) {
+                Usuario usuario = bibliotecaService.atenderSiguienteEnEspera();
+                if (usuario != null) {
+                    System.out.println("Usuario atendido: " + usuario.getNombre());
+                }
             }
         }
-        
+    }
+
+
+    public void mostrarUsuariosRegistrados(){
+        System.out.println("\n === USUARIOS REGISTRADOS === ");
+        Usuario[] usuarios = bibliotecaService.getTodosLosUsuaaruis();
+        if(usuarios.length == 0){
+            System.out.println("No hay usuarios registrados");
+        }else{
+            for (Usuario usuario : usuarios) {
+                System.out.println("Número: " + usuario.getNumeroUsuario() +
+                                   " | Nombre: " + usuario.getNombre() +
+                                   " | DNI: " + usuario.getDni() +
+                                   " | Dirección: " + usuario.getDireccion() +
+                                   " | Teléfono: " + usuario.getTelefono() +
+                                   " | Libros prestados: " + usuario.getLibrosPrestados());
+            }
+            System.out.println("Total: " + usuarios.length + " usuarios");
+        }
     }
 }
